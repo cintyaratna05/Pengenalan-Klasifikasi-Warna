@@ -104,7 +104,7 @@ btn_buka.pack(pady=15)
 label_gambar = Label(root, bg="#e6f2ff")
 label_gambar.pack()
 
-hasil_rgb = Label(root, text="Nilai RGB: -", font=("Times New Roman", 14, "Bold"), fg="#34495e", bg="#e6f2ff")
+hasil_rgb = Label(root, text="Nilai RGB: -", font=("Times New Roman", 14, "bold"), fg="#34495e", bg="#e6f2ff")
 hasil_rgb.pack(pady=5)
 
 hasil_warna = Label(root, text="Warna: -", font=("Arial", 12, "bold"))
