@@ -89,7 +89,7 @@ def rgb_to_hex(rgb):
 
 root = tk.Tk()
 root.title("Deteksi Warna Otomatis")
-root.geometry("700x700")
+root.geometry("600x700")
 root.configure(bg="#ffc0cb")  # Pink muda
 
 FONT_UTAMA = ("Comic Sans MS", 13, "bold")
