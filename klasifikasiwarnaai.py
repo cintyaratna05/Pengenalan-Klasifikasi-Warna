@@ -92,7 +92,9 @@ root.title("Deteksi Warna Otomatis")
 root.geometry("700x700")
 root.configure(bg="#ffc0cb")  # Pink muda
 
-judul = Label(root, text="Pengenalan Warna dari Gambar", font=("Helvetica", 19, "bold"))
+FONT_UTAMA = ("Comic Sans MS", 13, "bold")
+
+judul = Label(root, text="Pengenalan Warna dari Gambar", font=("Comic Sans MS", 25, "bold"))
 judul.pack(pady=10)
 
 btn_buka = Button(root, text="Buka Gambar", command=buka_gambar)
