@@ -89,9 +89,9 @@ def rgb_to_hex(rgb):
 
 root = tk.Tk()
 root.title("Deteksi Warna Otomatis")
-root.geometry("400x500")
+root.geometry("700x700")
 
-judul = Label(root, text="Pengenalan Warna dari Gambar", font=("Arial", 14, "bold"))
+judul = Label(root, text="Pengenalan Warna dari Gambar", font=("Helvetica", 19, "bold"))
 judul.pack(pady=10)
 
 btn_buka = Button(root, text="Buka Gambar", command=buka_gambar)
