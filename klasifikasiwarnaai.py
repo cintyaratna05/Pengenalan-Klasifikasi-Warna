@@ -14,13 +14,8 @@ warna_rgb = {
     "Hijau": [0, 255, 0],
     "Biru": [0, 0, 255],
     "Kuning": [255, 255, 0],
-    "Cyan": [0, 255, 255],
-    "Magenta": [255, 0, 255],
     "Hitam": [0, 0, 0],
-    "Putih": [255, 255, 255],
-    "Abu-abu": [128, 128, 128]
 }
-
 # === Fungsi membuat dataset warna ===
 def generate_data(jumlah_per_warna=200):
     X, y = [], []
