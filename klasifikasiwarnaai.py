@@ -8,13 +8,22 @@ from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
 from tensorflow.keras.utils import to_categorical
 
 # === Label dan RGB dasar ===
-class_labels = ["Merah", "Hijau", "Biru", "Kuning", "Hitam"]
+class_labels = ["Merah", "Hijau", "Biru", "Kuning", "Hitam", "Putih", "Abu-abu", "Coklat",  "Ungu", "Oranye", "Pink", "Cyan", "Lime", "Magenta"]
 warna_rgb = {
     "Merah": [255, 0, 0],
     "Hijau": [0, 255, 0],
     "Biru": [0, 0, 255],
     "Kuning": [255, 255, 0],
     "Hitam": [0, 0, 0],
+    "Putih": [255, 255, 255],
+    "Abu-abu": [128, 128, 128],
+    "Coklat": [139, 69, 19],
+    "Ungu": [128, 0, 128],
+    "Oranye": [255, 165, 0],
+    "Pink": [255, 192, 203],
+    "Cyan": [0, 255, 255],
+    "Lime": [191, 255, 0],
+    "Magenta": [255, 0, 255],
 }
 # === Fungsi membuat dataset warna ===
 def generate_data(jumlah_per_warna=200):
