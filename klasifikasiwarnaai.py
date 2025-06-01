@@ -90,6 +90,7 @@ def rgb_to_hex(rgb):
 root = tk.Tk()
 root.title("Deteksi Warna Otomatis")
 root.geometry("700x700")
+root.configure(bg="#ffc0cb")  # Pink muda
 
 judul = Label(root, text="Pengenalan Warna dari Gambar", font=("Helvetica", 19, "bold"))
 judul.pack(pady=10)
