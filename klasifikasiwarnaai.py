@@ -8,37 +8,23 @@ from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
 from tensorflow.keras.utils import to_categorical
 
 # === Label dan RGB dasar ===
-class_labels = [
-    "Merah", "Hijau", "Biru", "Kuning", "Hitam", "Putih", "Abu-abu",
-    "Coklat", "Ungu", "Oranye", "Pink", "Cyan", "Lime", "Magenta"
-]
+class_labels = ["Merah", "Hijau", "Biru", "Kuning"]
 warna_rgb = {
     "Merah": [255, 0, 0],
     "Hijau": [0, 255, 0],
     "Biru": [0, 0, 255],
     "Kuning": [255, 255, 0],
-    "Hitam": [0, 0, 0],
-    "Putih": [255, 255, 255],
-    "Abu-abu": [128, 128, 128],
-    "Coklat": [139, 69, 19],
-    "Ungu": [128, 0, 128],
-    "Oranye": [255, 165, 0],
-    "Pink": [255, 192, 203],
-    "Cyan": [0, 255, 255],
-    "Lime": [191, 255, 0],
-    "Magenta": [255, 0, 255],
 }
-
-# === Fungsi membuat dataset warna dengan variasi noise lebih besar ===
-def generate_data(jumlah_per_warna=700):
+# === Fungsi membuat dataset warna ===
+def generate_data(jumlah_per_warna=200):
     X, y = [], []
     for i, warna in enumerate(class_labels):
-        base_rgb = np.array(warna_rgb[warna], dtype=np.uint8)
+        rgb = warna_rgb[warna]
         for _ in range(jumlah_per_warna):
-            img = np.ones((64, 64, 3), dtype=np.uint8) * base_rgb
-            noise = np.random.randint(-50, 50, (64, 64, 3))  # noise lebih besar dan variatif
-            noisy_img = np.clip(img + noise, 0, 255).astype(np.uint8)
-            X.append(noisy_img)
+            img = np.ones((64, 64, 3), dtype=np.uint8) * np.array(rgb, dtype=np.uint8)
+            noise = np.random.randint(0, 30, (64, 64, 3), dtype=np.uint8)
+            img = np.clip(img + noise, 0, 255)
+            X.append(img)
             y.append(i)
     return np.array(X), to_categorical(np.array(y), num_classes=len(class_labels))
 
@@ -47,25 +33,21 @@ model_path = "model_warna_cnn.h5"
 if os.path.exists(model_path):
     model = load_model(model_path)
 else:
-    print("Training model CNN, mohon tunggu...")
     X, y = generate_data()
     X = X.astype("float32") / 255.0
 
     model = Sequential([
-        Conv2D(32, (3,3), activation='relu', input_shape=(64, 64, 3)),
+        Conv2D(16, (3,3), activation='relu', input_shape=(64, 64, 3)),
         MaxPooling2D(),
-        Conv2D(64, (3,3), activation='relu'),
-        MaxPooling2D(),
-        Conv2D(128, (3,3), activation='relu'),
+        Conv2D(32, (3,3), activation='relu'),
         MaxPooling2D(),
         Flatten(),
-        Dense(128, activation='relu'),
+        Dense(64, activation='relu'),
         Dense(len(class_labels), activation='softmax')
     ])
     model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
-    model.fit(X, y, epochs=25, batch_size=32, validation_split=0.2)
+    model.fit(X, y, epochs=10, batch_size=32, validation_split=0.2)
     model.save(model_path)
-    print("Model selesai dilatih dan disimpan.")
 
 # === Prediksi warna dari gambar ===
 def kenali_warna_dengan_cnn(image_path):
@@ -109,11 +91,13 @@ root.title("Deteksi Warna Otomatis")
 root.geometry("600x700")
 root.configure(bg="#ffc0cb")  # Pink muda
 
-judul = Label(root, text="Pengenalan Warna dari Gambar", font=("Comic Sans MS", 25, "bold"), fg="#4B0082", bg="#ffc0cb")
+FONT_UTAMA = ("Comic Sans MS", 13, "bold")
+
+judul = Label(root, text="Pengenalan Warna dari Gambar", font=("Comic Sans MS", 25, "bold"),  fg="#4B0082", bg="#ffc0cb")
 judul.pack(pady=30)
 
-btn_buka = Button(root, text="Pilih Gambar", command=buka_gambar, font=("Times New Roman", 12, "bold"),
-                  bg="#3498db", fg="white", activebackground="#2980b9", relief="raised", padx=20, pady=10)
+btn_buka = Button(root, text="Pilih Gambar", command=buka_gambar, font=("Times New Roman", 12, "bold"), bg="#3498db", fg="white",
+                  activebackground="#2980b9", relief="raised", padx=20, pady=10)
 btn_buka.pack(pady=15)
 
 label_gambar = Label(root, bg="#e6f2ff")
@@ -125,7 +109,7 @@ hasil_rgb.pack(pady=5)
 hasil_warna = Label(root, text="Warna: -", font=("Arial", 12, "bold"))
 hasil_warna.pack(pady=(5,15))
 
-kotak_preview = Label(root, text="", width=20, height=2, relief="solid", bd=2, bg="white")
+kotak_preview = Label(root, text="", width=20, height=2,  relief="solid", bd=2, bg="white")
 kotak_preview.pack(pady=(20))
 
 root.mainloop()
