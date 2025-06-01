@@ -97,7 +97,7 @@ FONT_UTAMA = ("Comic Sans MS", 13, "bold")
 judul = Label(root, text="Pengenalan Warna dari Gambar", font=("Comic Sans MS", 25, "bold"),  fg="#4B0082", bg="#ffc0cb")
 judul.pack(pady=30)
 
-btn_buka = Button(root, text="Pilih Gambar", command=buka_gambar, font=FONT_BOLD, bg="#3498db", fg="white",
+btn_buka = Button(root, text="Pilih Gambar", command=buka_gambar, font=("Times New Roman", 12, "bold"), bg="#3498db", fg="white",
                   activebackground="#2980b9", relief="raised", padx=20, pady=10)
 btn_buka.pack(pady=15)
 
