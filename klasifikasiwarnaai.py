@@ -8,7 +8,7 @@ from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
 from tensorflow.keras.utils import to_categorical
 
 # === Label dan RGB dasar ===
-class_labels = ["Merah", "Hijau", "Biru", "Kuning", "Cyan", "Magenta", "Hitam", "Putih", "Abu-abu"]
+class_labels = ["Merah", "Hijau", "Biru", "Kuning", "Hitam"]
 warna_rgb = {
     "Merah": [255, 0, 0],
     "Hijau": [0, 255, 0],
