@@ -94,22 +94,23 @@ root.configure(bg="#ffc0cb")  # Pink muda
 
 FONT_UTAMA = ("Comic Sans MS", 13, "bold")
 
-judul = Label(root, text="Pengenalan Warna dari Gambar", font=("Comic Sans MS", 25, "bold"))
-judul.pack(pady=20)
+judul = Label(root, text="Pengenalan Warna dari Gambar", font=("Comic Sans MS", 25, "bold"),  fg="#4B0082", bg="#ffc0cb")
+judul.pack(pady=30)
 
-btn_buka = Button(root, text="Buka Gambar", command=buka_gambar)
+btn_buka = Button(root, text="Pilih Gambar", command=buka_gambar, font=FONT_BOLD, bg="#3498db", fg="white",
+                  activebackground="#2980b9", relief="raised", padx=20, pady=10)
 btn_buka.pack(pady=15)
 
-label_gambar = Label(root)
+label_gambar = Label(root, bg="#e6f2ff")
 label_gambar.pack()
 
-hasil_rgb = Label(root, text="RGB: -", font=("Arial", 12))
+hasil_rgb = Label(root, text="Nilai RGB: -", font=("Times New Roman", 14), fg="#34495e", bg="#e6f2ff")
 hasil_rgb.pack(pady=5)
 
 hasil_warna = Label(root, text="Warna: -", font=("Arial", 12, "bold"))
 hasil_warna.pack(pady=(5,15))
 
-kotak_preview = Label(root, text="", width=20, height=2)
-kotak_preview.pack(pady=(10,20))
+kotak_preview = Label(root, text="", width=20, height=2,  relief="solid", bd=2, bg="white")
+kotak_preview.pack(pady=(20))
 
 root.mainloop()
