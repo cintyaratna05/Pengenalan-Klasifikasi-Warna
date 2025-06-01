@@ -88,7 +88,7 @@ def rgb_to_hex(rgb):
     return "#%02x%02x%02x" % tuple(rgb)
 
 root = tk.Tk()
-root.title("Pengenalan Warna dari Gambar (CNN)")
+root.title("Deteksi Warna Otomatis")
 root.geometry("400x500")
 
 judul = Label(root, text="Pengenalan Warna dari Gambar", font=("Arial", 14, "bold"))
